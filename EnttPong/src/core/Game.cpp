@@ -9,6 +9,9 @@
 #include <cstdlib>
 #include <SDL2/SDL_timer.h>
 
+#include "../components/SpriteComponent.hpp"
+#include "../components/PositionComponent.hpp"
+
 #include "Game.hpp"
 
 namespace ep
@@ -16,6 +19,9 @@ namespace ep
 	Game::Game(const std::string& title, int w, int h, Uint32 flags)
 		:m_window(title, w, h, flags)
 	{
+		auto square = m_registry.create();
+		m_registry.assign<SpriteComponent>(square, 256, 256, SDL_Colour{255, 255, 255, 255});
+		m_registry.assign<PositionComponent>(square, (w / 2) - (256 / 2), (h / 2) - (256 / 2));
 	}
 
 	int Game::run()
@@ -71,7 +77,10 @@ namespace ep
 
 	void Game::render()
 	{
+		SDL_SetRenderDrawColor(m_window.getRenderer(), 0, 0, 0, 255);
 		SDL_RenderClear(m_window.getRenderer());
+
+		m_renderSystem.render(&m_window, m_registry);
 
 		SDL_RenderPresent(m_window.getRenderer());
 	}

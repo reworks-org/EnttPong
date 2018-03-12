@@ -9,8 +9,7 @@
 #ifndef ENTTPONG_GAME_HPP_
 #define ENTTPONG_GAME_HPP_
 
-#include "../graphics/Window.hpp"
-#include "../entt/entity/registry.hpp"
+#include "../systems/RenderSystem.hpp"
 
 namespace ep
 {
@@ -66,6 +65,11 @@ namespace ep
 		/// The default entt registry to hold and manage our entities.
 		///
 		entt::DefaultRegistry m_registry;
+
+		///
+		/// Our RenderSystem
+		///
+		RenderSystem m_renderSystem;
 	};
 }
 

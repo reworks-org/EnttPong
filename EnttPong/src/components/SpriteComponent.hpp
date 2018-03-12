@@ -16,8 +16,6 @@ namespace ep
 	///
 	/// A component that describes a sprite or texture.
 	/// In this case our 'sprites' are coloured rectangles.
-	/// We make our member data public because there is no reason to have
-	/// specialized getters and setters.
 	///
 	class SpriteComponent final
 	{
@@ -39,7 +37,7 @@ namespace ep
 		///
 		/// Move assignment overload.
 		///
-		SpriteComponent& operator=(const SpriteComponent&);
+		SpriteComponent& operator=(const SpriteComponent &);
 
 	public:
 		///
