@@ -1,8 +1,0 @@
-http://gameprogrammingpatterns.com/game-loop.html
-
-https://wiki.libsdl.org/SDL_RenderFillRect
-https://wiki.libsdl.org/SDL_SetRenderDrawColor
-
-https://github.com/skypjack/entt/issues/28
-
-https://robots.thoughtbot.com/pong-clone-in-javascript

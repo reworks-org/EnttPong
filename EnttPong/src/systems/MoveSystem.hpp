@@ -41,9 +41,21 @@ namespace ep
 		void event(SDL_Event& event, entt::DefaultRegistry& registry);
 
 		///
-		///
+		/// Process events and update entities accordingly.
 		///
 		void update();
+
+	private:
+		///
+		/// Is the player moving north?
+		///
+		bool m_movingNorth = false;
+
+		///
+		///
+		/// Is the player moving south?
+		///
+		bool m_movingSouth = false;
 	};
 }
 

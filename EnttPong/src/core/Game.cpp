@@ -12,6 +12,7 @@
 #include "../core/BasicLog.hpp"
 #include "../components/SpriteComponent.hpp"
 #include "../components/PositionComponent.hpp"
+#include "../components/VelocityComponent.hpp"
 
 #include "Game.hpp"
 
@@ -31,6 +32,7 @@ namespace ep
 		auto ball = m_registry.create();
 		m_registry.assign<SpriteComponent>(ball, 16, SDL_Colour{ 255, 255, 255, 255 });
 		m_registry.assign<PositionComponent>(ball, (w / 2) - 16, (h / 2) - 16);
+		m_registry.assign<VelocityComponent>(ball, 2.0f, 1.0f);
 	}
 
 	int Game::run()
@@ -72,6 +74,7 @@ namespace ep
 
 	void Game::event()
 	{
+		// Process game events
 		while (SDL_PollEvent(&m_window.m_event) != 0)
 		{
 			switch (m_window.m_event.type)
@@ -89,11 +92,15 @@ namespace ep
 				}
 				break;
 			}
+
+			// Process system events.
+			m_moveSystem.event(m_window.m_event, m_registry);
 		}
 	}
 
 	void Game::update()
 	{
+		m_moveSystem.update();
 	}
 
 	void Game::render()

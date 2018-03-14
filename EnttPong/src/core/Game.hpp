@@ -9,6 +9,7 @@
 #ifndef ENTTPONG_GAME_HPP_
 #define ENTTPONG_GAME_HPP_
 
+#include "../systems/MoveSystem.hpp"
 #include "../systems/RenderSystem.hpp"
 
 namespace ep
@@ -70,6 +71,11 @@ namespace ep
 		/// Our RenderSystem
 		///
 		RenderSystem m_renderSystem;
+
+		///
+		/// The movement system
+		///
+		MoveSystem m_moveSystem;
 	};
 }
 
