@@ -11,7 +11,7 @@
 
 #include <SDL2/SDL_events.h>
 
-#include "../entt/entity/registry.hpp"
+#include "../libs/entt/entity/registry.hpp"
 
 namespace ep
 {

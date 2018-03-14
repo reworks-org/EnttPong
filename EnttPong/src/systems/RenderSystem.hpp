@@ -10,7 +10,7 @@
 #define ENTTPONG_RENDERSYSTEM_HPP_
 
 #include "../graphics/Window.hpp"
-#include "../entt/entity/registry.hpp"
+#include "../libs/entt/entity/registry.hpp"
 
 namespace ep
 {

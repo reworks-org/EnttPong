@@ -15,19 +15,27 @@ namespace ep
 {
 	///
 	/// A component that describes a sprite or texture.
-	/// In this case our 'sprites' are coloured rectangles.
+	/// In this case our 'sprites' are coloured rectangles and circles.
 	///
 	class SpriteComponent final
 	{
 	public:
 		///
-		/// Main Constructor.
+		/// Rectangle Constructor.
 		///
 		/// \param w Width of the sprite.
 		/// \param h Height of the sprite.
 		/// \param col The colour you want the sprite to be (RGBA, 0 - 255).
 		///
 		SpriteComponent(int w, int h, SDL_Colour col);
+
+		///
+		/// Circle Constructor.
+		///
+		/// \param radius Radius of the circle to draw.
+		/// \param col The colour you want the sprite to be (RGBA, 0 - 255).
+		///
+		SpriteComponent(int radius, SDL_Colour col);
 
 		///
 		/// Default destructor.
@@ -49,9 +57,14 @@ namespace ep
 		/// Stores how high the rectangle is.
 		///
 		int m_height;
+		
+		///
+		/// Stores the radius of a circle.
+		///
+		int m_radius;
 
 		///
-		/// Stores the colour of the rectangle.
+		/// Stores the colour of the sprite.
 		///
 		SDL_Colour m_colour;
 	};

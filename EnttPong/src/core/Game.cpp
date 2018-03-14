@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <SDL2/SDL_timer.h>
 
+#include "../core/BasicLog.hpp"
 #include "../components/SpriteComponent.hpp"
 #include "../components/PositionComponent.hpp"
 
@@ -19,9 +20,17 @@ namespace ep
 	Game::Game(const std::string& title, int w, int h, Uint32 flags)
 		:m_window(title, w, h, flags)
 	{
-		auto square = m_registry.create();
-		m_registry.assign<SpriteComponent>(square, 256, 256, SDL_Colour{255, 255, 255, 255});
-		m_registry.assign<PositionComponent>(square, (w / 2) - (256 / 2), (h / 2) - (256 / 2));
+		auto player = m_registry.create();
+		m_registry.assign<SpriteComponent>(player, 12, 96, SDL_Colour{ 255, 255, 255, 255 });
+		m_registry.assign<PositionComponent>(player, 20, 20);
+
+		auto ai = m_registry.create();
+		m_registry.assign<SpriteComponent>(ai, 12, 96, SDL_Colour{ 255, 255, 255, 255 });
+		m_registry.assign<PositionComponent>(ai, w - 30, 20);
+
+		auto ball = m_registry.create();
+		m_registry.assign<SpriteComponent>(ball, 16, SDL_Colour{ 255, 255, 255, 255 });
+		m_registry.assign<PositionComponent>(ball, (w / 2) - 16, (h / 2) - 16);
 	}
 
 	int Game::run()
@@ -53,6 +62,9 @@ namespace ep
 			}
 
 			render();
+
+			LOG_INFO << "Time: " << time << "\n";
+			LOG_INFO << "Aclr: " << accumulator << "\n";
 		}
 
 		return EXIT_SUCCESS;
@@ -66,6 +78,15 @@ namespace ep
 			{
 			case SDL_QUIT:
 				m_window.m_isOpen = false;
+				break;
+
+			case SDL_KEYDOWN:
+				switch (m_window.m_event.key.keysym.sym)
+				{
+				case SDLK_ESCAPE:
+					m_window.m_isOpen = false;
+					break;
+				}
 				break;
 			}
 		}

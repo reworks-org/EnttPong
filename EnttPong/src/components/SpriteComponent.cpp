@@ -11,7 +11,12 @@
 namespace ep
 {
 	SpriteComponent::SpriteComponent(int w, int h, SDL_Colour col)
-		:m_width(w), m_height(h), m_colour(col)
+		:m_width(w), m_height(h), m_colour(col), m_radius(0)
+	{
+	}
+
+	SpriteComponent::SpriteComponent(int radius, SDL_Colour col)
+		:m_radius(radius), m_colour(col), m_width(0), m_height(0)
 	{
 	}
 
