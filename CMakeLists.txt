@@ -3,7 +3,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 include(ExternalProject)
 
-project(ray)
+project(EnttPong)
 
 # Install all final products of ExternalProject_ADD() at this location
 set(EXTERNAL_INSTALL_PATH "${CMAKE_BINARY_DIR}/external")
