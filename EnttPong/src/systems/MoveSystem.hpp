@@ -43,7 +43,9 @@ namespace ep
 		///
 		/// Process events and update entities accordingly.
 		///
-		void update();
+		/// \param registry The registry to retrieve entities from.
+		///
+		void update(entt::DefaultRegistry& registry);
 
 	private:
 		///

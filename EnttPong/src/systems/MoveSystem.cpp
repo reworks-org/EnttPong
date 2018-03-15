@@ -6,6 +6,7 @@
 /// Refer to LICENSE.txt for more details.
 ///
 
+#include "../tags/PlayerTag.hpp"
 #include "../components/PositionComponent.hpp"
 
 #include "MoveSystem.hpp"
@@ -26,11 +27,23 @@ namespace ep
 		}
 	}
 
-	void MoveSystem::update()
+	void MoveSystem::update(entt::DefaultRegistry& registry)
 	{
 		// We only need to update the player position, since the ai wil be managed by the aisystem.
-		
-		m_movingNorth = false;
-		m_movingSouth = false;
+		// Here, we can retrieve the player entity, because only ONE entity can have a single instance component (tag).
+		auto player = registry.attachee<PlayerTag>();
+		PositionComponent &pc = registry.get<PositionComponent>(player);
+
+		if (m_movingNorth)
+		{
+			pc.m_y -= 5;
+			m_movingNorth = false;
+		}
+
+		if (m_movingSouth)
+		{
+			pc.m_y += 5;
+			m_movingSouth = false;
+		}
 	}
 }

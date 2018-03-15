@@ -29,6 +29,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\systems\MoveSystem.cpp" />
     <ClCompile Include="src\systems\RenderSystem.cpp" />
+    <ClCompile Include="src\tags\PlayerTag.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\PositionComponent.hpp" />
@@ -63,6 +64,7 @@
     <ClInclude Include="src\libs\SDL2_gfx\SDL2_rotozoom.h" />
     <ClInclude Include="src\systems\MoveSystem.hpp" />
     <ClInclude Include="src\systems\RenderSystem.hpp" />
+    <ClInclude Include="src\tags\PlayerTag.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
