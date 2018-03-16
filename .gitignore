@@ -8,3 +8,13 @@ EnttPong/build/
 
 # visual studio stuff
 .vs/
+
+# CLion stuff
+/.idea
+
+# CMake stuff
+/cmake-build-debug
+/build/*
+
+# Emacs stuff
+*~
