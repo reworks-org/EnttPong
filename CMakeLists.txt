@@ -17,14 +17,6 @@ ExternalProject_Add(
         CMAKE_ARGS  -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_PATH}
 )
 
-# Not handled yet, no CMakeList in SDL_gfx sources
-#ExternalProject_Add(
-#        sdlgfx
-#        URL         http://www.ferzkopp.net/Software/SDL2_gfx/SDL2_gfx-1.0.4.tar.gz
-#        CMAKE_ARGS  "-DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_PATH}"
-#
-#)
-
 # entt ECS engine cloning
 ExternalProject_Add(
         entt
@@ -66,6 +58,13 @@ set(
         EnttPong/src/components/SpriteComponent.hpp
         EnttPong/src/components/VelocityComponent.cpp
         EnttPong/src/components/VelocityComponent.hpp
+
+        # SDL2_gfx dependency (sources directly integrated to the project)
+        EnttPong/src/libs/SDL2_gfx/SDL2_gfxPrimitives.c
+        EnttPong/src/libs/SDL2_gfx/SDL2_gfxPrimitives.h
+        EnttPong/src/libs/SDL2_gfx/SDL2_gfxPrimitives_font.h
+        EnttPong/src/libs/SDL2_gfx/SDL2_rotozoom.c
+        EnttPong/src/libs/SDL2_gfx/SDL2_rotozoom.h
 )
 
 add_executable(
@@ -77,7 +76,6 @@ add_executable(
 add_dependencies(
         "${ENTTPONG_EXE}"
         sdl2
-        # sdlgfx # Not handled yet
         entt
 )
 
@@ -101,7 +99,4 @@ target_link_libraries(
         PRIVATE pthread
 
         PRIVATE ${SDL2_STATIC_LIBRARY_PATH}
-
-        # Unhandled dependency as of now. Users are expected to have it installed in their environment.
-        PRIVATE SDL_gfx
 )
