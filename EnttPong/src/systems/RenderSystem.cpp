@@ -31,8 +31,10 @@ namespace ep
 			{
 				// First we set the rectangle fill colour to that of the spritecomponents.
 				SDL_SetRenderDrawColor(window->getRenderer(), sc.m_colour.r, sc.m_colour.g, sc.m_colour.b, sc.m_colour.a);
+
 				// Then we create the actual rectangle.
 				SDL_Rect rectToDraw{ static_cast<int>(pc.m_x), static_cast<int>(pc.m_y), sc.m_width, sc.m_height };
+
 				// Now the rectangle gets renderered with the appropriate colours and position data to the window.
 				SDL_RenderFillRect(window->getRenderer(), &rectToDraw);
 			}

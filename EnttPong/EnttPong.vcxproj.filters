@@ -10,12 +10,11 @@
     <ClCompile Include="src\systems\MoveSystem.cpp" />
     <ClCompile Include="src\systems\RenderSystem.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\components\VelocityComponent.cpp" />
     <ClCompile Include="src\tags\PlayerTag.cpp" />
     <ClCompile Include="src\systems\AISystem.cpp" />
     <ClCompile Include="src\tags\AITag.cpp" />
     <ClCompile Include="src\tags\BallTag.cpp" />
-    <ClCompile Include="src\components\CollisionComponent.cpp" />
+    <ClCompile Include="src\systems\CollisionSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\PositionComponent.hpp" />
@@ -49,11 +48,10 @@
     <ClInclude Include="src\libs\SDL2_gfx\SDL2_rotozoom.h" />
     <ClInclude Include="src\systems\MoveSystem.hpp" />
     <ClInclude Include="src\systems\RenderSystem.hpp" />
-    <ClInclude Include="src\components\VelocityComponent.hpp" />
     <ClInclude Include="src\tags\PlayerTag.hpp" />
     <ClInclude Include="src\systems\AISystem.hpp" />
     <ClInclude Include="src\tags\AITag.hpp" />
     <ClInclude Include="src\tags\BallTag.hpp" />
-    <ClInclude Include="src\components\CollisionComponent.hpp" />
+    <ClInclude Include="src\systems\CollisionSystem.hpp" />
   </ItemGroup>
 </Project>
