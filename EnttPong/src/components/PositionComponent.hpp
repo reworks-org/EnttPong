@@ -23,7 +23,7 @@ namespace ep
 		/// \param initialX The starting x-pos on screen.
 		/// \param initialY The starting y-pos on screen.
 		///
-		PositionComponent(float initialX, float initialY);
+		PositionComponent(double initialX, double initialY);
 
 		///
 		/// Default destructor.
@@ -39,12 +39,12 @@ namespace ep
 		///
 		/// x pos on screen.
 		///
-		float m_x;
+		double m_x;
 		
 		///
 		/// y pos on screen.
 		///
-		float m_y;
+		double m_y;
 	};
 }
 

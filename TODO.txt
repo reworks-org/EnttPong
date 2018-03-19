@@ -4,4 +4,6 @@ fix movement -> should be smooth
 implement collisions
 implement ai
 
+collision and velocity belong in collisionsystem
+
 finish docs

@@ -9,8 +9,6 @@
 #ifndef ENTTPONG_BALLTAG_HPP_
 #define ENTTPONG_BALLTAG_HPP_
 
-#include <cstdint>
-
 namespace ep
 {
 	///

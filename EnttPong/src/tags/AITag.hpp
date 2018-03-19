@@ -9,8 +9,6 @@
 #ifndef ENTTPONG_AITAG_HPP_
 #define ENTTPONG_AITAG_HPP_
 
-#include <cstdint>
-
 namespace ep
 {
 	///

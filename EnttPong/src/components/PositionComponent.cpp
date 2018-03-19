@@ -10,7 +10,7 @@
 
 namespace ep
 {
-	PositionComponent::PositionComponent(float initialX, float initialY)
+	PositionComponent::PositionComponent(double initialX, double initialY)
 		:m_x(initialX), m_y(initialY)
 	{
 	}

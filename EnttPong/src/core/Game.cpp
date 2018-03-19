@@ -33,13 +33,13 @@ namespace ep
 		auto ai = m_registry.create();
 		m_registry.attach<AITag>(ai);
 		m_registry.assign<SpriteComponent>(ai, 12, 96, SDL_Colour{ 255, 255, 255, 255 });
-		m_registry.assign<PositionComponent>(ai, w - 30, 20);
+		m_registry.assign<PositionComponent>(ai, w - 30.0, 20.0);
 		//m_registry.assign<CollisionComponent>(ai);
 
 		auto ball = m_registry.create();
 		m_registry.attach<BallTag>(ball);
 		m_registry.assign<SpriteComponent>(ball, 16, SDL_Colour{ 255, 255, 255, 255 });
-		m_registry.assign<PositionComponent>(ball, (w / 2) - 16, (h / 2) - 16);
+		m_registry.assign<PositionComponent>(ball, (w / 2.0) - 16.0, (h / 2.0) - 16.0);
 		m_registry.assign<VelocityComponent>(ball, 2.0f, 1.0f);
 		//m_registry.assign<CollisionComponent>(ball);
 	}
