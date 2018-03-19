@@ -43,9 +43,10 @@ namespace ep
 		///
 		/// Process events and update entities accordingly.
 		///
+		/// \param time DeltaTime or something similar from fixed-timestep gameloop.
 		/// \param registry The registry to retrieve entities from.
 		///
-		void update(entt::DefaultRegistry& registry);
+		void update(double time, entt::DefaultRegistry& registry);
 
 	private:
 		///

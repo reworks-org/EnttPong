@@ -49,7 +49,9 @@ namespace ep
 		///
 		/// Process game data.
 		///
-		void update();
+		/// \param time The DeltaTime or similar from fixed-timestep loop.
+		///
+		void update(double time);
 
 		///
 		/// Render everything to the window.

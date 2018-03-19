@@ -15,19 +15,37 @@ namespace ep
 {
 	void MoveSystem::event(SDL_Event& event, entt::DefaultRegistry& registry)
 	{
-		switch (event.key.keysym.sym)
+		switch (event.type)
 		{
-		case SDLK_w:
-			m_movingNorth = true;
+		case SDL_KEYDOWN:
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_w:
+				m_movingNorth = true;
+				break;
+
+			case SDLK_s:
+				m_movingSouth = true;
+				break;
+			}
 			break;
 
-		case SDLK_s:
-			m_movingSouth = true;
+		case SDL_KEYUP:
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_w:
+				m_movingNorth = false;
+				break;
+
+			case SDLK_s:
+				m_movingSouth = false;
+				break;
+			}
 			break;
 		}
 	}
 
-	void MoveSystem::update(entt::DefaultRegistry& registry)
+	void MoveSystem::update(double time, entt::DefaultRegistry& registry)
 	{
 		// We only need to update the player position, since the ai wil be managed by the aisystem.
 		// Here, we can retrieve the player entity, because only ONE entity can have a single instance component (tag).
@@ -36,14 +54,22 @@ namespace ep
 
 		if (m_movingNorth)
 		{
-			pc.m_y -= 5;
-			m_movingNorth = false;
+			pc.m_y -= 0.15 * time;
 		}
 
 		if (m_movingSouth)
 		{
-			pc.m_y += 5;
-			m_movingSouth = false;
+			pc.m_y += 0.15 * time;
+		}
+
+		// lock to screen
+		if (pc.m_y < 0)
+		{
+			pc.m_y = 0;
+		}
+		else if (pc.m_y > (480 - 96)) // screen width - sprite width
+		{
+			pc.m_y = (480 - 96);
 		}
 	}
 }

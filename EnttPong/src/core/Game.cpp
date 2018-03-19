@@ -9,6 +9,8 @@
 #include <cstdlib>
 #include <SDL2/SDL_timer.h>
 
+#include "../tags/AITag.hpp"
+#include "../tags/BallTag.hpp"
 #include "../core/BasicLog.hpp"
 #include "../tags/PlayerTag.hpp"
 #include "../components/SpriteComponent.hpp"
@@ -29,12 +31,13 @@ namespace ep
 		//m_registry.assign<CollisionComponent>(player);
 
 		auto ai = m_registry.create();
+		m_registry.attach<AITag>(ai);
 		m_registry.assign<SpriteComponent>(ai, 12, 96, SDL_Colour{ 255, 255, 255, 255 });
 		m_registry.assign<PositionComponent>(ai, w - 30, 20);
-		//m_registry.assign<AIComponent>(ai);
 		//m_registry.assign<CollisionComponent>(ai);
 
 		auto ball = m_registry.create();
+		m_registry.attach<BallTag>(ball);
 		m_registry.assign<SpriteComponent>(ball, 16, SDL_Colour{ 255, 255, 255, 255 });
 		m_registry.assign<PositionComponent>(ball, (w / 2) - 16, (h / 2) - 16);
 		m_registry.assign<VelocityComponent>(ball, 2.0f, 1.0f);
@@ -49,7 +52,7 @@ namespace ep
 
 		double time = 0;
 		double accumulator = 0.0;
-		const double deltaTime = 0.01;
+		const double deltaTime = 1000.0 / 60.0;
 
 		double currentTime = SDL_GetTicks();
 		while (m_window.m_isOpen)
@@ -63,7 +66,7 @@ namespace ep
 			while (accumulator >= deltaTime)
 			{
 				event();
-				update();
+				update(accumulator);
 
 				accumulator -= deltaTime;
 				time += deltaTime;
@@ -104,9 +107,9 @@ namespace ep
 		}
 	}
 
-	void Game::update()
+	void Game::update(double time)
 	{
-		m_moveSystem.update(m_registry);
+		m_moveSystem.update(time, m_registry);
 	}
 
 	void Game::render()
