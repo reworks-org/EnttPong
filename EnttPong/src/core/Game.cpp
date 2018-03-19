@@ -6,7 +6,6 @@
 /// Refer to LICENSE.txt for more details.
 ///
 
-#include <cstdlib>
 #include <SDL2/SDL_timer.h>
 
 #include "../tags/AITag.hpp"
@@ -23,6 +22,9 @@ namespace ep
 	Game::Game(const std::string& title, int w, int h, Uint32 flags)
 		:m_window(title, w, h, flags)
 	{
+		// Here, we are creating the entities using EnTT and attaching the relevant components and tags.
+		// We can invoke the constructor of the component or tag in the assign() and attach() methods of the registry.
+
 		auto player = m_registry.create();
 		m_registry.attach<PlayerTag>(player);
 		m_registry.assign<SpriteComponent>(player, 12, 96, SDL_Colour{ 255, 255, 255, 255 });
@@ -35,7 +37,7 @@ namespace ep
 
 		auto ball = m_registry.create();
 		m_registry.attach<BallTag>(ball);
-		m_registry.assign<SpriteComponent>(ball, 16, SDL_Colour{ 255, 255, 255, 255 });
+		m_registry.assign<SpriteComponent>(ball, 8, SDL_Colour{ 255, 255, 255, 255 });
 		m_registry.assign<PositionComponent>(ball, (w / 2.0) - 16.0, (h / 2.0) - 16.0);
 	}
 
@@ -47,6 +49,9 @@ namespace ep
 
 		double time = 0;
 		double accumulator = 0.0;
+
+		// 60 updates per second. We divide 1000 by 60 instead of 1 because sdl operates on milliseconds 
+		// not nanoseconds.
 		const double deltaTime = 1000.0 / 60.0;
 
 		double currentTime = SDL_GetTicks();
@@ -69,8 +74,8 @@ namespace ep
 
 			render();
 
-			LOG_INFO << "Time: " << time << "\n";
-			LOG_INFO << "Aclr: " << accumulator << "\n";
+			LOG_INFO << "TIME: " << time << "\n";
+			LOG_INFO << "ACLR: " << accumulator << "\n";
 		}
 
 		return EXIT_SUCCESS;
