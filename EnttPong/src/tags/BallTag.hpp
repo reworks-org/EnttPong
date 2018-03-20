@@ -22,7 +22,7 @@ namespace ep
 		/// Main Constructor.
 		///
 		///
-		BallTag() = default;
+		BallTag();
 
 		///
 		/// Default destructor.
@@ -33,6 +33,17 @@ namespace ep
 		/// Move assignment overload.
 		///
 		BallTag& operator=(const BallTag &);
+
+	public:
+		///
+		/// The X direction the ball is moving in.
+		///
+		double m_XDirection;
+
+		///
+		/// The Y direction the ball is moving in.
+		///
+		double m_YDirection;
 	};
 }
 
