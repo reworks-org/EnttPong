@@ -1,0 +1,22 @@
+version: 0.0.{build}-{branch}
+branches: 
+  only: 
+    - master
+
+shallow_clone: true
+skip_tags: true
+image:
+  - Visual Studio 2017
+  - Visual Studio 2015
+
+platform:
+  - x86
+  - x64
+
+configuration:
+  - Debug
+  - Release
+
+build:
+  parallel: true
+  project: EnttPong.sln
