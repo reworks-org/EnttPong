@@ -127,8 +127,9 @@ public:
      * automatically detected and unregistered if available.
      *
      * @warning
-     * Disonnecting a listener during an update may lead to unexpected behavior.
-     * Unregister listeners before or after invoking the update if possible.
+     * Disconnecting a listener during an update may lead to unexpected
+     * behavior. Unregister listeners before or after invoking the update if
+     * possible.
      *
      * @tparam Event Type of event from which to disconnect the function.
      * @tparam Class Type of class to which the member function belongs.
@@ -181,7 +182,7 @@ public:
         const auto buf = buffer(mode);
         mode = !mode;
 
-        for(auto pos = wrappers.size(); pos > decltype(pos){0}; --pos) {
+        for(auto pos = wrappers.size(); pos; --pos) {
             auto &wrapper = wrappers[pos-1];
 
             if(wrapper) {

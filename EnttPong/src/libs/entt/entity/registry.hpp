@@ -286,13 +286,37 @@ public:
     }
 
     /**
-     * @brief Verifies if an entity identifier still refers to a valid entity.
+     * @brief Checks if an entity identifier refers to a valid entity.
      * @param entity An entity identifier, either valid or not.
-     * @return True if the identifier is still valid, false otherwise.
+     * @return True if the identifier is valid, false otherwise.
      */
     bool valid(entity_type entity) const noexcept {
         const auto pos = size_type(entity & traits_type::entity_mask);
         return (pos < entities.size() && entities[pos] == entity);
+    }
+
+    /**
+     * @brief Checks if an entity identifier refers to a valid entity.
+     *
+     * Alternative version of `valid`. It accesses the internal data structures
+     * without bounds checking and thus it's both unsafe and risky to use.<br/>
+     * You should not invoke directly this function unless you know exactly what
+     * you are doing. Prefer the `valid` member function instead.
+     *
+     * @warning
+     * Attempting to use an entity that doesn't belong to the registry can
+     * result in undefined behavior.<br/>
+     * An assertion will abort the execution at runtime in debug mode in case of
+     * bounds violation.
+     *
+     * @param entity A valid entity identifier.
+     * @return True if the identifier is valid, false otherwise.
+     */
+    bool fast(entity_type entity) const noexcept {
+        const auto pos = size_type(entity & traits_type::entity_mask);
+        assert(pos < entities.size());
+        // the in-use control bit permits to avoid accessing the direct vector
+        return (entities[pos] == entity);
     }
 
     /**
@@ -751,7 +775,7 @@ public:
      * }
      * @endcode
      *
-     * Prefer this function anyway because it has slighlty better
+     * Prefer this function anyway because it has slightly better
      * performance.
      *
      * @warning
@@ -766,7 +790,7 @@ public:
      * @return A reference to the newly created component.
      */
     template<typename Component, typename... Args>
-    Component & accomodate(entity_type entity, Args &&... args) {
+    Component & accommodate(entity_type entity, Args &&... args) {
         assert(valid(entity));
         auto &cpool = ensure<Component>();
 
@@ -778,7 +802,7 @@ public:
     /**
      * @brief Sorts the pool of entities for the given component.
      *
-     * The order of the elements in a pool is highly affected by assignements
+     * The order of the elements in a pool is highly affected by assignments
      * of components to entities and deletions. Components are arranged to
      * maximize the performance during iterations and users should not make any
      * assumption on the order.<br/>
@@ -806,7 +830,7 @@ public:
     /**
      * @brief Sorts two pools of components in the same way.
      *
-     * The order of the elements in a pool is highly affected by assignements
+     * The order of the elements in a pool is highly affected by assignments
      * of components to entities and deletions. Components are arranged to
      * maximize the performance during iterations and users should not make any
      * assumption on the order.
@@ -824,9 +848,9 @@ public:
      * the following rules:
      *
      * * All the entities in `A` that are also in `B` are returned first
-     * according to the order they have in `B`.
+     *   according to the order they have in `B`.
      * * All the entities in `A` that are not in `B` are returned in no
-     * particular order after all the other entities.
+     *   particular order after all the other entities.
      *
      * Any subsequent change to `B` won't affect the order in `A`.
      *
@@ -923,7 +947,7 @@ public:
     template<typename Func>
     void each(Func func) const {
         if(available) {
-            for(auto pos = entities.size(); pos > size_type{0}; --pos) {
+            for(auto pos = entities.size(); pos; --pos) {
                 const entity_type curr = pos - 1;
                 const auto entt = entities[curr] & traits_type::entity_mask;
 
@@ -932,7 +956,7 @@ public:
                 }
             }
         } else {
-            for(auto pos = entities.size(); pos > size_type{0}; --pos) {
+            for(auto pos = entities.size(); pos; --pos) {
                 func(entities[pos-1]);
             }
         }
@@ -1000,13 +1024,13 @@ public:
      * As a rule of thumb, storing a view should never be an option.
      *
      * Standard views do their best to iterate the smallest set of candidate
-     * entites. In particular:
+     * entities. In particular:
      *
      * * Single component views are incredibly fast and iterate a packed array
-     * of entities, all of which has the given component.
+     *   of entities, all of which has the given component.
      * * Multi component views look at the number of entities available for each
-     * component and pick up a reference to the smallest set of candidates to
-     * test for the given components.
+     *   component and pick up a reference to the smallest set of candidates to
+     *   test for the given components.
      *
      * @note
      * Multi component views are pretty fast. However their performance tend to
@@ -1017,6 +1041,7 @@ public:
      * @see View
      * @see View<Entity, Component>
      * @see PersistentView
+     * @see RawView
      *
      * @tparam Component Type of components used to construct the view.
      * @return A newly created standard view.
@@ -1038,7 +1063,7 @@ public:
      * requested.<br/>
      * To avoid costly operations, internal data structures for persistent views
      * can be prepared with this function. Just use the same set of components
-     * that would have been used otherwise to contruct the view.
+     * that would have been used otherwise to construct the view.
      *
      * @tparam Component Types of components used to prepare the view.
      */
@@ -1097,16 +1122,16 @@ public:
      * initialization.<br/>
      * As a rule of thumb, storing a view should never be an option.
      *
-     * Persistent views are the right choice to iterate entites when the number
+     * Persistent views are the right choice to iterate entities when the number
      * of components grows up and the most of the entities have all the given
      * components.<br/>
      * However they have also drawbacks:
      *
      * * Each kind of persistent view requires a dedicated data structure that
-     * is allocated within the registry and it increases memory pressure.
+     *   is allocated within the registry and it increases memory pressure.
      * * Internal data structures used to construct persistent views must be
-     * kept updated and it affects slightly construction and destruction of
-     * entities and components.
+     *   kept updated and it affects slightly construction and destruction of
+     *   entities and components.
      *
      * That being said, persistent views are an incredibly powerful tool if used
      * with care and offer a boost of performance undoubtedly.
@@ -1120,6 +1145,7 @@ public:
      * @see View
      * @see View<Entity, Component>
      * @see PersistentView
+     * @see RawView
      *
      * @tparam Component Types of components used to construct the view.
      * @return A newly created persistent view.
@@ -1129,6 +1155,34 @@ public:
         // after the calls to handler, pools have already been created
         return PersistentView<Entity, Component...>{handler<Component...>(), pool<Component>()...};
     }
+
+    /**
+     * @brief Returns a raw view for the given component.
+     *
+     * This kind of views are created on the fly and share with the registry its
+     * internal data structures.<br/>
+     * Feel free to discard a view after the use. Creating and destroying a view
+     * is an incredibly cheap operation because they do not require any type of
+     * initialization.<br/>
+     * As a rule of thumb, storing a view should never be an option.
+     *
+     * Raw views are incredibly fast and must be considered the best tool to
+     * iterate components whenever knowing the entities to which they belong
+     * isn't required.
+     *
+     * @see View
+     * @see View<Entity, Component>
+     * @see PersistentView
+     * @see RawView
+     *
+     * @tparam Component Type of component used to construct the view.
+     * @return A newly created raw view.
+     */
+    template<typename Component>
+    RawView<Entity, Component> raw() {
+        return RawView<Entity, Component>{ensure<Component>()};
+    }
+
 
 private:
     std::vector<std::unique_ptr<SparseSet<Entity>>> handlers;
