@@ -78,7 +78,27 @@ namespace ep
 		BallTag& ballTag = registry.get<BallTag>();
 		PositionComponent& ballPos = registry.get<PositionComponent>(ball);
 
+		// allow the ball to move based on a fixed-timestep loop.
 		ballPos.m_x += ballTag.m_XDirection * time;
 		ballPos.m_y += ballTag.m_YDirection * time;
+
+		// lock to screen
+		if (ballPos.m_x < 0)
+		{
+			ballPos.m_x += 0.01;
+		}
+		else if (ballPos.m_x > (480 - 16)) // screen width - sprite width
+		{
+			ballPos.m_x -= 0.01;
+		}
+
+		if (ballPos.m_y < 0)
+		{
+			ballPos.m_y += 0.01;
+		}
+		else if (ballPos.m_x > (640 - 16)) // screen width - sprite width
+		{
+			ballPos.m_x -= 0.01;
+		}
 	} 
 }

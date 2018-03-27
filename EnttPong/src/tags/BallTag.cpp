@@ -11,7 +11,7 @@
 namespace ep
 {
 	BallTag::BallTag()
-		:m_XDirection(0.0), m_YDirection(0.0)
+		:m_XDirection(1.0), m_YDirection(1.0)
 	{
 	}
 

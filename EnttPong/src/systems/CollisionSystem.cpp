@@ -18,27 +18,40 @@ namespace ep
 {
 	void CollisionSystem::update(entt::DefaultRegistry& registry)
 	{
+		// First we retrieve all the relevant entities.
+		// We do this rather than iterate because each component has to be acted on specficially.
+
 		auto ball = registry.attachee<BallTag>();
+		BallTag& ballTag = registry.get<BallTag>();
 		PositionComponent& ballPos = registry.get<PositionComponent>(ball);
 		SpriteComponent& ballSprite = registry.get<SpriteComponent>(ball);
+
+		auto player = registry.attachee<PlayerTag>();
+		PositionComponent& playerPos = registry.get<PositionComponent>(player);
+		SpriteComponent& playerSprite = registry.get<SpriteComponent>(player);
+
+		auto ai = registry.attachee<AITag>();
+		PositionComponent& aiPos = registry.get<PositionComponent>(ai);
+		SpriteComponent& aiSprite = registry.get<SpriteComponent>(ai);
 
 		// Ball bounding box.
 		SDL_Rect BallBB{ static_cast<int>(ballPos.m_x), static_cast<int>(ballPos.m_y), ballSprite.m_width, ballSprite.m_height };
 
-		// First we retrieve a view of the entitys we want to process.
-		// Then we iterate over each one and update the appropriate data.
-		registry.view<SpriteComponent, PositionComponent>().each([&](auto entity, SpriteComponent& sc, PositionComponent& pc)
-		{
-			// entity bb
-			SDL_Rect aabb{ static_cast<int>(pc.m_x), static_cast<int>(pc.m_y), sc.m_width, sc.m_height };
+		// Player bounding box.
+		SDL_Rect PlayerBB{ static_cast<int>(playerPos.m_x), static_cast<int>(playerPos.m_y), playerSprite.m_width, playerSprite.m_height };
 
-			if (entity != ball)
-			{
-				if (SDL_HasIntersection(&BallBB, &aabb))
-				{
-					// do something???
-				}
-			}
-		});
+		// AI bounding box
+		SDL_Rect AIBB{ static_cast<int>(aiPos.m_x), static_cast<int>(aiPos.m_y), aiSprite.m_width, aiSprite.m_height };
+
+		if (SDL_HasIntersection(&PlayerBB, &BallBB))
+		{
+			ballTag.m_XDirection += 0.01;
+			ballTag.m_YDirection += 0.01;
+		}
+		else if (SDL_HasIntersection(&AIBB, &BallBB))
+		{
+			ballTag.m_XDirection -= 0.01;
+			ballTag.m_YDirection -= 0.01;
+		}
 	}
 }
