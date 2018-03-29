@@ -11,6 +11,7 @@
 
 #include "../systems/MoveSystem.hpp"
 #include "../systems/RenderSystem.hpp"
+#include "../systems/CollisionSystem.hpp"
 
 namespace ep
 {
@@ -78,6 +79,11 @@ namespace ep
 		/// The movement system
 		///
 		MoveSystem m_moveSystem;
+
+		///
+		/// The collision system.
+		///
+		CollisionSystem m_collisionSystem;
 	};
 }
 

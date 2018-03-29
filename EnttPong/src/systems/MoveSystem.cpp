@@ -79,26 +79,35 @@ namespace ep
 		PositionComponent& ballPos = registry.get<PositionComponent>(ball);
 
 		// allow the ball to move based on a fixed-timestep loop.
-		ballPos.m_x += ballTag.m_XDirection * time;
-		ballPos.m_y += ballTag.m_YDirection * time;
+		ballPos.m_x += ballTag.m_velX * time;
+		ballPos.m_y += ballTag.m_velY * time;
+
+		// ensure ball can be reset
+		if (ballPos.m_x < 0.0)
+		{
+			// ball passed the player paddle, reset it.
+			ballPos.m_x = (480.0 / 2.0) - 16.0;
+			ballPos.m_y = (640.0 / 2.0) - 16.0;
+		}
+		else if (ballPos.m_x > (640.0 - 16.0)) // screen width - sprite width
+		{
+			// ball passed the ai paddle, reset it.
+			ballPos.m_x = (480.0 / 2.0) - 16.0;
+			ballPos.m_y = (640.0 / 2.0) - 16.0;
+		}
 
 		// lock to screen
-		if (ballPos.m_x < 0)
+		if (ballPos.m_y < 0.0)
 		{
-			ballPos.m_x += 0.01;
+			// bounce ball
+			ballPos.m_y = 0.0;
+			ballTag.m_velY = -ballTag.m_velY;
 		}
-		else if (ballPos.m_x > (480 - 16)) // screen width - sprite width
+		else if (ballPos.m_y > (640.0 - 16.0)) // screen width - sprite width
 		{
-			ballPos.m_x -= 0.01;
-		}
-
-		if (ballPos.m_y < 0)
-		{
-			ballPos.m_y += 0.01;
-		}
-		else if (ballPos.m_x > (640 - 16)) // screen width - sprite width
-		{
-			ballPos.m_x -= 0.01;
+			// bounce ball
+			ballPos.m_y = (640.0 - 16.0);
+			ballTag.m_velY = -ballTag.m_velY;
 		}
 	} 
 }

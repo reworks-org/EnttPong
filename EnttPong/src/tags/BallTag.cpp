@@ -10,8 +10,8 @@
 
 namespace ep
 {
-	BallTag::BallTag()
-		:m_XDirection(1.0), m_YDirection(1.0)
+	BallTag::BallTag(double velX, double velY)
+		:m_velX(velX), m_velY(velY), m_startingVelX(velX), m_startingVelY(velY)
 	{
 	}
 

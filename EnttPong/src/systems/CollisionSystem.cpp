@@ -16,7 +16,7 @@
 
 namespace ep
 {
-	void CollisionSystem::update(entt::DefaultRegistry& registry)
+	void CollisionSystem::update(double time, entt::DefaultRegistry& registry)
 	{
 		// First we retrieve all the relevant entities.
 		// We do this rather than iterate because each component has to be acted on specficially.
@@ -43,15 +43,18 @@ namespace ep
 		// AI bounding box
 		SDL_Rect AIBB{ static_cast<int>(aiPos.m_x), static_cast<int>(aiPos.m_y), aiSprite.m_width, aiSprite.m_height };
 
+		// calculate collisions and act on them
 		if (SDL_HasIntersection(&PlayerBB, &BallBB))
 		{
-			ballTag.m_XDirection += 0.01;
-			ballTag.m_YDirection += 0.01;
+			ballTag.m_velX = 0.15 / 2;
+			ballTag.m_velY = -ballTag.m_startingVelY;
+			ballPos.m_y += ballTag.m_velY * time;
 		}
-		else if (SDL_HasIntersection(&AIBB, &BallBB))
+		else if (SDL_HasIntersection(&BallBB, &AIBB))
 		{
-			ballTag.m_XDirection -= 0.01;
-			ballTag.m_YDirection -= 0.01;
+			ballTag.m_velX = 0.15 / 2;
+			ballTag.m_velY = ballTag.m_startingVelY;
+			ballPos.m_y += ballTag.m_velY * time;
 		}
 	}
 }

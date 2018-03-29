@@ -21,8 +21,10 @@ namespace ep
 		///
 		/// Main Constructor.
 		///
+		/// \param velX Initial X Velocity.
+		/// \param velY Initial Y Velocity.
 		///
-		BallTag();
+		BallTag(double velX, double velY);
 
 		///
 		/// Default destructor.
@@ -36,14 +38,24 @@ namespace ep
 
 	public:
 		///
-		/// The X direction the ball is moving in.
+		/// The X velocity of the ball.
 		///
-		double m_XDirection;
+		double m_velX;
 
 		///
-		/// The Y direction the ball is moving in.
+		/// The Y velocity of the ball.
 		///
-		double m_YDirection;
+		double m_velY;
+
+		///
+		/// The original X velocity of the ball.
+		///
+		const double m_startingVelX;
+
+		///
+		/// The original Y velocity of the ball.
+		///
+		const double m_startingVelY;
 	};
 }
 
