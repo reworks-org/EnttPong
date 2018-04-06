@@ -53,5 +53,6 @@
     <ClInclude Include="src\tags\AITag.hpp" />
     <ClInclude Include="src\tags\BallTag.hpp" />
     <ClInclude Include="src\systems\CollisionSystem.hpp" />
+    <ClInclude Include="src\utils\RandomVelocity.hpp" />
   </ItemGroup>
 </Project>

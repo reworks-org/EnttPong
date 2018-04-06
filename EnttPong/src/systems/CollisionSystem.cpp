@@ -9,6 +9,7 @@
 #include "../tags/AITag.hpp"
 #include "../tags/BallTag.hpp"
 #include "../tags/PlayerTag.hpp"
+#include "../utils/RandomVelocity.hpp"
 #include "../components/SpriteComponent.hpp"
 #include "../components/PositionComponent.hpp"
 
@@ -47,12 +48,15 @@ namespace ep
 		if (SDL_HasIntersection(&PlayerBB, &BallBB) == SDL_TRUE)
 		{
 			// bounce ball
-			ballTag.m_velX = -ballTag.m_velX;
+			ballTag.m_velX = randomVelocitySign(ballTag.m_velX);
+			ballTag.m_velY = randomVelocitySign(ballTag.m_velY);
 		}
-		else if (SDL_HasIntersection(&AIBB, &BallBB) == SDL_TRUE)
+		
+		if (SDL_HasIntersection(&AIBB, &BallBB) == SDL_TRUE)
 		{
 			// bounce ball
-			ballTag.m_velX = -ballTag.m_velX;
+			ballTag.m_velX = randomVelocitySign(ballTag.m_velX);
+			ballTag.m_velY = randomVelocitySign(ballTag.m_velY);
 		}
 	}
 }
