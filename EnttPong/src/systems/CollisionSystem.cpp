@@ -35,7 +35,7 @@ namespace ep
 		SpriteComponent& aiSprite = registry.get<SpriteComponent>(ai);
 
 		// Ball bounding box.
-		SDL_Rect BallBB{ static_cast<int>(ballPos.m_x), static_cast<int>(ballPos.m_y), ballSprite.m_width, ballSprite.m_height };
+		SDL_Rect BallBB{ static_cast<int>(ballPos.m_x), static_cast<int>(ballPos.m_y), ballSprite.m_radius, ballSprite.m_radius };
 
 		// Player bounding box.
 		SDL_Rect PlayerBB{ static_cast<int>(playerPos.m_x), static_cast<int>(playerPos.m_y), playerSprite.m_width, playerSprite.m_height };
@@ -44,17 +44,17 @@ namespace ep
 		SDL_Rect AIBB{ static_cast<int>(aiPos.m_x), static_cast<int>(aiPos.m_y), aiSprite.m_width, aiSprite.m_height };
 
 		// calculate collisions and act on them
-		if (SDL_HasIntersection(&PlayerBB, &BallBB))
+		if (SDL_HasIntersection(&PlayerBB, &BallBB) == SDL_TRUE)
 		{
-			ballTag.m_velX = 0.15 / 2;
-			ballTag.m_velY = -ballTag.m_startingVelY;
-			ballPos.m_y += ballTag.m_velY * time;
+			// bounce ball
+			ballPos.m_x = 0.0;
+			ballTag.m_velX = -ballTag.m_velX;
 		}
-		else if (SDL_HasIntersection(&BallBB, &AIBB))
+		else if (SDL_HasIntersection(&AIBB, &BallBB) == SDL_TRUE)
 		{
-			ballTag.m_velX = 0.15 / 2;
-			ballTag.m_velY = ballTag.m_startingVelY;
-			ballPos.m_y += ballTag.m_velY * time;
+			// bounce ball
+			ballPos.m_x = (480.0 - 16.0);
+			ballTag.m_velX = -ballTag.m_velX;
 		}
 	}
 }

@@ -6,11 +6,36 @@
 /// Refer to LICENSE.txt for more details.
 ///
 
+#include <ctime>
+#include <random>
+
 #include "../tags/BallTag.hpp"
 #include "../tags/PlayerTag.hpp"
 #include "../components/PositionComponent.hpp"
 
 #include "MoveSystem.hpp"
+
+// just a little randomness for starting direction.
+// yay stack overflow
+// https://stackoverflow.com/a/7560564
+namespace
+{
+	double randomNegativeVelocity()
+	{
+		std::random_device rd; // obtain a random number from hardware
+		std::mt19937 eng(rd()); // seed the generator
+		std::uniform_int_distribution<> distr(0, 1); // define the range
+
+		if (distr(eng) != 0)
+		{
+			return (-0.12);
+		}
+		else
+		{
+			return (0.12);
+		}
+	}
+}
 
 namespace ep
 {
@@ -86,14 +111,20 @@ namespace ep
 		if (ballPos.m_x < 0.0)
 		{
 			// ball passed the player paddle, reset it.
-			ballPos.m_x = (480.0 / 2.0) - 16.0;
-			ballPos.m_y = (640.0 / 2.0) - 16.0;
+			ballPos.m_x = (640.0 / 2.0) - 16.0;
+			ballPos.m_y = (480.0 / 2.0) - 16.0;
+
+			ballTag.m_velX = randomNegativeVelocity();
+			ballTag.m_velY = randomNegativeVelocity();
 		}
 		else if (ballPos.m_x > (640.0 - 16.0)) // screen width - sprite width
 		{
 			// ball passed the ai paddle, reset it.
-			ballPos.m_x = (480.0 / 2.0) - 16.0;
-			ballPos.m_y = (640.0 / 2.0) - 16.0;
+			ballPos.m_x = (640.0 / 2.0) - 16.0;
+			ballPos.m_y = (480.0 / 2.0) - 16.0;
+
+			ballTag.m_velX = randomNegativeVelocity();
+			ballTag.m_velY = randomNegativeVelocity();
 		}
 
 		// lock to screen
@@ -103,10 +134,10 @@ namespace ep
 			ballPos.m_y = 0.0;
 			ballTag.m_velY = -ballTag.m_velY;
 		}
-		else if (ballPos.m_y > (640.0 - 16.0)) // screen width - sprite width
+		else if (ballPos.m_y > (480.0 - 16.0)) // screen height - sprite height
 		{
 			// bounce ball
-			ballPos.m_y = (640.0 - 16.0);
+			ballPos.m_y = (480.0 - 16.0);
 			ballTag.m_velY = -ballTag.m_velY;
 		}
 	} 

@@ -28,7 +28,7 @@ namespace ep
 		auto player = m_registry.create();
 		m_registry.attach<PlayerTag>(player);
 		m_registry.assign<SpriteComponent>(player, 12, 96, SDL_Colour{ 255, 255, 255, 255 });
-		m_registry.assign<PositionComponent>(player, 20, 20);
+		m_registry.assign<PositionComponent>(player, 20.0, 20.0);
 
 		auto ai = m_registry.create();
 		m_registry.attach<AITag>(ai);
@@ -36,7 +36,7 @@ namespace ep
 		m_registry.assign<PositionComponent>(ai, w - 30.0, 20.0);
 
 		auto ball = m_registry.create();
-		m_registry.attach<BallTag>(ball, 0.15, 0.15);
+		m_registry.attach<BallTag>(ball, 0.12, 0.12);
 		m_registry.assign<SpriteComponent>(ball, 8, SDL_Colour{ 255, 255, 255, 255 });
 		m_registry.assign<PositionComponent>(ball, (w / 2.0) - 16.0, (h / 2.0) - 16.0);
 	}
@@ -109,6 +109,7 @@ namespace ep
 
 	void Game::update(double time)
 	{
+		m_aiSystem.update(m_registry);
 		m_moveSystem.update(time, m_registry);
 		m_collisionSystem.update(time, m_registry);
 	}

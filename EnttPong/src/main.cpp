@@ -6,6 +6,7 @@
 /// Refer to LICENSE.txt for more details.
 ///
 
+#include <ctime>
 #include <SDL2/SDL.h>
 
 #include "core/Game.hpp"
@@ -16,6 +17,8 @@
 ///
 int main(int argsc, char *argsv[])
 {
+	std::srand(std::time(nullptr)); // set random seed
+
 	auto success = EXIT_FAILURE;
 	
 	// This will allow us to catch and log any exceptions thrown.

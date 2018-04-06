@@ -33,5 +33,14 @@ namespace ep
 			// move ai smoothly up towards ball so middle of ai paddle is at ball pos.
 		}
 		*/
+
+		if (ballPC.m_y > aiPC.m_y)
+		{
+			aiPC.m_y = ballPC.m_y - 6.0;
+		}
+		else if (ballPC.m_y < aiPC.m_y)
+		{
+			aiPC.m_y = ballPC.m_y - 6.0;
+		}
 	}
 }

@@ -9,6 +9,7 @@
 #ifndef ENTTPONG_GAME_HPP_
 #define ENTTPONG_GAME_HPP_
 
+#include "../systems/AISystem.hpp"
 #include "../systems/MoveSystem.hpp"
 #include "../systems/RenderSystem.hpp"
 #include "../systems/CollisionSystem.hpp"
@@ -84,6 +85,11 @@ namespace ep
 		/// The collision system.
 		///
 		CollisionSystem m_collisionSystem;
+
+		///
+		/// The AI system.
+		///
+		AISystem m_aiSystem;
 	};
 }
 
