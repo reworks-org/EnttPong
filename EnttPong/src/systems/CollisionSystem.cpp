@@ -47,13 +47,11 @@ namespace ep
 		if (SDL_HasIntersection(&PlayerBB, &BallBB) == SDL_TRUE)
 		{
 			// bounce ball
-			ballPos.m_x = 0.0;
 			ballTag.m_velX = -ballTag.m_velX;
 		}
 		else if (SDL_HasIntersection(&AIBB, &BallBB) == SDL_TRUE)
 		{
 			// bounce ball
-			ballPos.m_x = (480.0 - 16.0);
 			ballTag.m_velX = -ballTag.m_velX;
 		}
 	}
