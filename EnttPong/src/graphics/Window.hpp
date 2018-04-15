@@ -43,7 +43,7 @@ namespace ep
 		///
 		/// \return CONST pointer to SDL_Renderer object. We want it const because we don't want the pointer to change.
 		///
-		SDL_Renderer* getRenderer() const;
+		SDL_Renderer* getRenderer() const noexcept;
 
 	public:
 		///

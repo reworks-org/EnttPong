@@ -38,7 +38,7 @@ namespace ep
 		/// \param event Structure containing event data.
 		/// \param registry The registry to retrieve entities from.
 		///
-		void event(SDL_Event& event, entt::DefaultRegistry& registry);
+		void event(const SDL_Event& event, entt::DefaultRegistry& registry) noexcept;
 
 		///
 		/// Process events and update entities accordingly.

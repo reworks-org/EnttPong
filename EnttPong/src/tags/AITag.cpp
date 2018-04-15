@@ -10,7 +10,7 @@
 
 namespace ep
 {
-	AITag& AITag::operator=(const AITag &)
+	AITag& AITag::operator=(const AITag &) noexcept
 	{
 		return *this;
 	}

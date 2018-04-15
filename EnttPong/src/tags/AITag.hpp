@@ -32,7 +32,7 @@ namespace ep
 		///
 		/// Move assignment overload.
 		///
-		AITag& operator=(const AITag &);
+		AITag& operator=(const AITag &) noexcept;
 	};
 }
 

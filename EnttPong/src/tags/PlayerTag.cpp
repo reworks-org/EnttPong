@@ -10,7 +10,7 @@
 
 namespace ep
 {
-	PlayerTag& PlayerTag::operator=(const PlayerTag &)
+	PlayerTag& PlayerTag::operator=(const PlayerTag &) noexcept
 	{
 		return *this;
 	}

@@ -10,12 +10,12 @@
 
 namespace ep
 {
-	BallTag::BallTag(double velX, double velY)
+	BallTag::BallTag(double velX, double velY) noexcept
 		:m_velX(velX), m_velY(velY), m_startingVelX(velX), m_startingVelY(velY)
 	{
 	}
 
-	BallTag& BallTag::operator=(const BallTag &)
+	BallTag& BallTag::operator=(const BallTag &) noexcept
 	{
 		return *this;
 	}

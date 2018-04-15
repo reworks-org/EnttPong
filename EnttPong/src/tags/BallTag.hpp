@@ -24,7 +24,7 @@ namespace ep
 		/// \param velX Initial X Velocity.
 		/// \param velY Initial Y Velocity.
 		///
-		BallTag(double velX, double velY);
+		BallTag(double velX, double velY) noexcept;
 
 		///
 		/// Default destructor.
@@ -34,7 +34,7 @@ namespace ep
 		///
 		/// Move assignment overload.
 		///
-		BallTag& operator=(const BallTag &);
+		BallTag& operator=(const BallTag &) noexcept;
 
 	public:
 		///

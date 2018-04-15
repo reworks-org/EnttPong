@@ -23,7 +23,7 @@ namespace ep
 		/// \param initialX The starting x-pos on screen.
 		/// \param initialY The starting y-pos on screen.
 		///
-		PositionComponent(double initialX, double initialY);
+		PositionComponent(double initialX, double initialY) noexcept;
 
 		///
 		/// Default destructor.
@@ -33,7 +33,7 @@ namespace ep
 		///
 		/// Move assignment overload.
 		///
-		PositionComponent& operator=(const PositionComponent &);
+		PositionComponent& operator=(const PositionComponent &) noexcept;
 
 	public:
 		///

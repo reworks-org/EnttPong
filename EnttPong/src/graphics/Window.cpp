@@ -43,7 +43,7 @@ namespace ep
 		SDL_DestroyWindow(m_window);
 	}
 
-	SDL_Renderer* Window::getRenderer() const
+	SDL_Renderer* Window::getRenderer() const noexcept
 	{
 		return m_renderer;
 	}

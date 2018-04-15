@@ -127,24 +127,31 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <CodeAnalysisRuleSet>CppCoreCheckRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\code analysis.ruleset</CodeAnalysisRuleSet>
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)build\$(Configuration)\$(Platform)\</IntDir>
+    <EnableCppCoreCheck>true</EnableCppCoreCheck>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)build\$(Configuration)\$(Platform)\</IntDir>
+    <EnableCppCoreCheck>true</EnableCppCoreCheck>
+    <CodeAnalysisRuleSet>..\code analysis.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)build\$(Configuration)\$(Platform)\</IntDir>
+    <EnableCppCoreCheck>true</EnableCppCoreCheck>
+    <CodeAnalysisRuleSet>..\code analysis.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)build\$(Configuration)\$(Platform)\</IntDir>
+    <EnableCppCoreCheck>true</EnableCppCoreCheck>
+    <CodeAnalysisRuleSet>..\code analysis.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

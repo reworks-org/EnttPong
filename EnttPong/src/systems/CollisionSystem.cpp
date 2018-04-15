@@ -22,18 +22,18 @@ namespace ep
 		// First we retrieve all the relevant entities.
 		// We do this rather than iterate because each component has to be acted on specficially.
 
-		auto ball = registry.attachee<BallTag>();
+		const auto ball = registry.attachee<BallTag>();
 		BallTag& ballTag = registry.get<BallTag>();
-		PositionComponent& ballPos = registry.get<PositionComponent>(ball);
-		SpriteComponent& ballSprite = registry.get<SpriteComponent>(ball);
+		const PositionComponent& ballPos = registry.get<PositionComponent>(ball);
+		const SpriteComponent& ballSprite = registry.get<SpriteComponent>(ball);
 
-		auto player = registry.attachee<PlayerTag>();
-		PositionComponent& playerPos = registry.get<PositionComponent>(player);
-		SpriteComponent& playerSprite = registry.get<SpriteComponent>(player);
+		const auto player = registry.attachee<PlayerTag>();
+		const PositionComponent& playerPos = registry.get<PositionComponent>(player);
+		const SpriteComponent& playerSprite = registry.get<SpriteComponent>(player);
 
-		auto ai = registry.attachee<AITag>();
-		PositionComponent& aiPos = registry.get<PositionComponent>(ai);
-		SpriteComponent& aiSprite = registry.get<SpriteComponent>(ai);
+		const auto ai = registry.attachee<AITag>();
+		const PositionComponent& aiPos = registry.get<PositionComponent>(ai);
+		const SpriteComponent& aiSprite = registry.get<SpriteComponent>(ai);
 
 		// Ball bounding box.
 		SDL_Rect BallBB{ static_cast<int>(ballPos.m_x), static_cast<int>(ballPos.m_y), ballSprite.m_radius, ballSprite.m_radius };

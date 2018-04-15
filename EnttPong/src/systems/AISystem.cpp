@@ -14,15 +14,15 @@
 
 namespace ep
 {
-	void AISystem::update(entt::DefaultRegistry& registry)
+	void AISystem::update(entt::DefaultRegistry& registry) noexcept
 	{
 		// First we retrieve the appropriate entities.
-		auto ai = registry.attachee<AITag>();
-		auto ball = registry.attachee<BallTag>();
+		const auto ai = registry.attachee<AITag>();
+		const auto ball = registry.attachee<BallTag>();
 
 		// Then their position components.
 		PositionComponent& aiPC = registry.get<PositionComponent>(ai);
-		PositionComponent& ballPC = registry.get<PositionComponent>(ball);
+		const PositionComponent& ballPC = registry.get<PositionComponent>(ball);
 
 		// And now we center the ai to the ball so it is always in the right position.
 		// we want to increase or decrese ai position based on if the ball is above or below it.

@@ -27,7 +27,7 @@ namespace ep
 		/// \param h Height of the sprite.
 		/// \param col The colour you want the sprite to be (RGBA, 0 - 255).
 		///
-		SpriteComponent(int w, int h, SDL_Colour col);
+		SpriteComponent(int w, int h, SDL_Colour col) noexcept;
 
 		///
 		/// Circle Constructor.
@@ -35,7 +35,7 @@ namespace ep
 		/// \param radius Radius of the circle to draw.
 		/// \param col The colour you want the sprite to be (RGBA, 0 - 255).
 		///
-		SpriteComponent(int radius, SDL_Colour col);
+		SpriteComponent(int radius, SDL_Colour col) noexcept;
 
 		///
 		/// Default destructor.
@@ -45,7 +45,7 @@ namespace ep
 		///
 		/// Move assignment overload.
 		///
-		SpriteComponent& operator=(const SpriteComponent &);
+		SpriteComponent& operator=(const SpriteComponent &) noexcept;
 
 	public:
 		///

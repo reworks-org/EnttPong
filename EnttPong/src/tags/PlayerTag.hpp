@@ -32,7 +32,7 @@ namespace ep
 		///
 		/// Move assignment overload.
 		///
-		PlayerTag& operator=(const PlayerTag &);
+		PlayerTag& operator=(const PlayerTag &) noexcept;
 	};
 }
 

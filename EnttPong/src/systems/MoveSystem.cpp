@@ -15,7 +15,7 @@
 
 namespace ep
 {
-	void MoveSystem::event(SDL_Event& event, entt::DefaultRegistry& registry)
+	void MoveSystem::event(const SDL_Event& event, entt::DefaultRegistry& registry) noexcept
 	{
 		switch (event.type)
 		{
@@ -51,7 +51,7 @@ namespace ep
 	{
 		// We only need to update the player position, since the ai wil be managed by the aisystem.
 		// Here, we can retrieve the player entity, because only ONE entity can have a single instance component (tag).
-		auto player = registry.attachee<PlayerTag>();
+		const auto player = registry.attachee<PlayerTag>();
 		PositionComponent& pc = registry.get<PositionComponent>(player);
 
 		if (m_movingNorth)
@@ -65,17 +65,17 @@ namespace ep
 		}
 
 		// lock to screen
-		if (pc.m_y < 0)
+		if (pc.m_y < 0.0)
 		{
-			pc.m_y = 0;
+			pc.m_y = 0.0;
 		}
-		else if (pc.m_y > (480 - 96)) // screen width - sprite width
+		else if (pc.m_y > (480.0 - 96.0)) // screen width - sprite width
 		{
-			pc.m_y = (480 - 96);
+			pc.m_y = (480.0 - 96.0);
 		}
 
 		// Next, we want to update the balls position and move it according to the directions its currently travelling.
-		auto ball = registry.attachee<BallTag>();
+		const auto ball = registry.attachee<BallTag>();
 		BallTag& ballTag = registry.get<BallTag>();
 		PositionComponent& ballPos = registry.get<PositionComponent>(ball);
 

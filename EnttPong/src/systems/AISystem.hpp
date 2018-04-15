@@ -35,7 +35,7 @@ namespace ep
 		///
 		/// \param registry The registry to retrieve entities from.
 		///
-		void update(entt::DefaultRegistry& registry);
+		void update(entt::DefaultRegistry& registry) noexcept;
 	};
 }
 
