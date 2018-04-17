@@ -1,0 +1,44 @@
+language: cpp
+sudo: false
+install: true
+dist: trusty
+
+branches:
+  only:
+  - master
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+
+matrix:
+  include:
+  - os: linux
+    compiler: gcc
+    addons:
+      apt:
+        sources: 
+          - ubuntu-toolchain-r-test
+        packages: 
+          - g++-7
+    env: COMPILER=g++-7
+  - os: linux
+    compiler: clang
+    addons:
+      apt:
+        sources: 
+          - ubuntu-toolchain-r-test 
+          - llvm-toolchain-trusty-5.0
+        packages:
+          - clang-5.0
+    env: COMPILER=clang++-5.0
+  - os: osx
+    osx_image: xcode9.1
+    compiler: clang
+    env: COMPILER=clang++
+
+script:
+  - mkdir bin
+  - cmake -Wno-dev -Wno-deprecated ..
+  - make -j2

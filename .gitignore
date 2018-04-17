@@ -13,8 +13,9 @@ EnttPong/build/
 /.idea
 
 # CMake stuff
-/cmake-build-debug
-/build/*
+cmake-build-debug/
+build/
+bin/
 
 # Emacs stuff
 *~
