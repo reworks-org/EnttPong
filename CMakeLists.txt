@@ -14,6 +14,9 @@ FIND_LIBRARY(CARBON_LIBRARY Carbon)
 FIND_LIBRARY(FORCEFEEDBACK_LIBRARY ForceFeedback)
 FIND_LIBRARY(COREFOUNDATION_LIBRARY CoreFoundation)
 FIND_LIBRARY(ICONV_LIBRARY iconv)
+FIND_LIBRARY(COREAUDIO_LIBRARY CoreAudio)
+FIND_LIBRARY(AUDIOTOOLBOX_LIBRARY AudioToolbox)
+FIND_LIBRARY(COREVIDEO_LIBRARY CoreVideo)
 
 if(APPLE)
 	# Download & build SDL2 dependency
@@ -28,7 +31,6 @@ if(APPLE)
         set(
                 SDL2_LINK_DEPENDENCIES
 
-                # Those two might be Linux/MacOs specific ?
                 PRIVATE dl
                 PRIVATE pthread
                 PRIVATE ${COCOA_LIBRARY}
@@ -37,6 +39,9 @@ if(APPLE)
                 PRIVATE ${FORCEFEEDBACK_LIBRARY}
                 PRIVATE ${COREFOUNDATION_LIBRARY}
                 PRIVATE ${ICONV_LIBRARY}
+                PRIVATE ${COREAUDIO_LIBRARY}
+ 				PRIVATE ${AUDIOTOOLBOX_LIBRARY}
+ 				PRIVATE ${COREVIDEO_LIBRARY}
         )
 elseif(LINUX OR UNIX)
 	# Download & build SDL2 dependency
@@ -51,7 +56,6 @@ elseif(LINUX OR UNIX)
         set(
                 SDL2_LINK_DEPENDENCIES
 
-                # Those two might be Linux/MacOs specific ?
                 PRIVATE dl
                 PRIVATE pthread
         )
