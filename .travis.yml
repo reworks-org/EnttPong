@@ -18,7 +18,7 @@ matrix:
     compiler: gcc
     addons:
       apt:
-        sources: 
+        sources:
           - ubuntu-toolchain-r-test
         packages: 
           - g++-7
@@ -28,10 +28,11 @@ matrix:
     addons:
       apt:
         sources: 
-          - ubuntu-toolchain-r-test 
+          - ubuntu-toolchain-r-test
           - llvm-toolchain-trusty-5.0
-        packages:
-          - clang-5.0
+        packages: 
+        - clang-5.0
+        - libstdc++-4.9-dev
     env: COMPILER=clang++-5.0
   - os: osx
     osx_image: xcode9.1
@@ -41,4 +42,4 @@ matrix:
 script:
   - cd EnttPong
   - cmake -Wno-dev -Wno-deprecated ..
-  - make -j2
+  - make -j3
