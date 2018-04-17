@@ -8,6 +8,8 @@ project(EnttPong)
 # Install all final products of ExternalProject_ADD() at this location
 set(EXTERNAL_INSTALL_PATH "${CMAKE_BINARY_DIR}/external")
 
+FIND_LIBRARY(COCOA_LIBRARY Cocoa)
+
 if(APPLE)
 	# Download & build SDL2 dependency
 	ExternalProject_Add(
@@ -24,7 +26,7 @@ if(APPLE)
                 # Those two might be Linux/MacOs specific ?
                 PRIVATE dl
                 PRIVATE pthread
-                PRIVATE cocoa
+                PRIVATE ${COCOA_LIBRARY}
         )
 elseif(LINUX OR UNIX)
 	# Download & build SDL2 dependency
