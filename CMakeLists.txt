@@ -9,6 +9,11 @@ project(EnttPong)
 set(EXTERNAL_INSTALL_PATH "${CMAKE_BINARY_DIR}/external")
 
 FIND_LIBRARY(COCOA_LIBRARY Cocoa)
+FIND_LIBRARY(IOKIT_LIBRARY IOKit)
+FIND_LIBRARY(CARBON_LIBRARY Carbon)
+FIND_LIBRARY(FORCEFEEDBACK_LIBRARY ForceFeedback)
+FIND_LIBRARY(COREFOUNDATION_LIBRARY CoreFoundation)
+FIND_LIBRARY(ICONV_LIBRARY libiconv)
 
 if(APPLE)
 	# Download & build SDL2 dependency
@@ -27,6 +32,11 @@ if(APPLE)
                 PRIVATE dl
                 PRIVATE pthread
                 PRIVATE ${COCOA_LIBRARY}
+                PRIVATE ${IOKIT_LIBRARY}
+                PRIVATE ${CARBON_LIBRARY}
+                PRIVATE ${FORCEFEEDBACK_LIBRARY}
+                PRIVATE ${COREFOUNDATION_LIBRARY}
+                PRIVATE ${ICONV_LIBRARY}
         )
 elseif(LINUX OR UNIX)
 	# Download & build SDL2 dependency
