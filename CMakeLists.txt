@@ -47,6 +47,10 @@ set(
 
         EnttPong/src/tags/PlayerTag.cpp
         EnttPong/src/tags/PlayerTag.hpp
+        EnttPong/src/tags/BallTag.cpp
+        EnttPong/src/tags/BallTag.hpp
+        EnttPong/src/tags/AITag.cpp
+        EnttPong/src/tags/AITag.hpp
 
         EnttPong/src/graphics/Window.cpp
         EnttPong/src/graphics/Window.hpp
@@ -55,13 +59,17 @@ set(
         EnttPong/src/systems/MoveSystem.hpp
         EnttPong/src/systems/RenderSystem.cpp
         EnttPong/src/systems/RenderSystem.hpp
+        EnttPong/src/systems/CollisionSystem.hpp
+        EnttPong/src/systems/CollisionSystem.cpp
+        EnttPong/src/systems/AISystem.hpp
+        EnttPong/src/systems/AISystem.cpp
 
         EnttPong/src/components/PositionComponent.cpp
         EnttPong/src/components/PositionComponent.hpp
         EnttPong/src/components/SpriteComponent.cpp
         EnttPong/src/components/SpriteComponent.hpp
-        EnttPong/src/components/VelocityComponent.cpp
-        EnttPong/src/components/VelocityComponent.hpp
+
+        EnttPong/src/utils/RandomVelocity.hpp
 
         # SDL2_gfx dependency (sources directly integrated to the project)
         EnttPong/src/libs/SDL2_gfx/SDL2_gfxPrimitives.c
