@@ -39,6 +39,6 @@ matrix:
     env: COMPILER=clang++
 
 script:
-  - mkdir bin
+  - cd EnttPong
   - cmake -Wno-dev -Wno-deprecated ..
   - make -j2
