@@ -17,6 +17,15 @@ if(APPLE)
 	        #install it in the build directory. no "" chars because they break SDL2's installation :(
 	        CMAKE_ARGS  -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_PATH} -DCMAKE_OSX_ARCHITECHURES=i386;x86_64
 	)
+
+        set(
+                SDL2_LINK_DEPENDENCIES
+
+                # Those two might be Linux/MacOs specific ?
+                PRIVATE dl
+                PRIVATE pthread
+                PRIVATE cocoa
+        )
 elseif(LINUX OR UNIX)
 	# Download & build SDL2 dependency
 	ExternalProject_Add(
@@ -26,6 +35,14 @@ elseif(LINUX OR UNIX)
 	        #install it in the build directory. no "" chars because they break SDL2's installation :(
 	        CMAKE_ARGS  -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_PATH}
 	)
+
+        set(
+                SDL2_LINK_DEPENDENCIES
+
+                # Those two might be Linux/MacOs specific ?
+                PRIVATE dl
+                PRIVATE pthread
+        )
 endif()
 
 # Cross-platform SDL2 static library filenames & paths
@@ -121,15 +138,6 @@ add_dependencies(
 target_include_directories(
         "${ENTTPONG_EXE}"
         PRIVATE "${EXTERNAL_INSTALL_PATH}/include"
-)
-
-
-set(
-        SDL2_LINK_DEPENDENCIES
-
-        # Those two might be Linux/MacOs specific ?
-        PRIVATE dl
-        PRIVATE pthread
 )
 
 target_link_libraries(

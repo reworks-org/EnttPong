@@ -24,7 +24,6 @@ namespace ep
 		{
 			std::string message = "Window failed to be created! SDL: ";
 			message += SDL_GetError();
-			throw std::runtime_error(message);
 		}
 
 		m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
@@ -33,7 +32,6 @@ namespace ep
 		{
 			std::string message = "Renderer failed to be created! SDL: ";
 			message += SDL_GetError();
-			throw std::runtime_error(message);
 		}
 	}
 

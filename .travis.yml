@@ -15,15 +15,6 @@ notifications:
 matrix:
   include:
   - os: linux
-    compiler: gcc
-    addons:
-      apt:
-        sources:
-          - ubuntu-toolchain-r-test
-        packages: 
-          - g++-7
-    env: COMPILER=g++-7
-  - os: linux
     compiler: clang
     addons:
       apt:
