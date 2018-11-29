@@ -90,8 +90,8 @@ namespace ep
 			ballPos.m_x = (640.0 / 2.0) - 16.0;
 			ballPos.m_y = (480.0 / 2.0) - 16.0;
 
-			ballTag.m_velX = randomVelocitySign(0.12);
-			ballTag.m_velY = randomVelocitySign(0.12);
+			ballTag.m_velX = randomVelocitySign(ballTag.m_startingVelX);
+			ballTag.m_velY = randomVelocitySign(ballTag.m_startingVelY);
 		}
 		else if (ballPos.m_x > (640.0 - 16.0)) // screen width - sprite width
 		{
@@ -99,24 +99,22 @@ namespace ep
 			ballPos.m_x = (640.0 / 2.0) - 16.0;
 			ballPos.m_y = (480.0 / 2.0) - 16.0;
 
-			ballTag.m_velX = randomVelocitySign(0.12);
-			ballTag.m_velY = randomVelocitySign(0.12);
+			ballTag.m_velX = randomVelocitySign(ballTag.m_startingVelX);
+			ballTag.m_velY = randomVelocitySign(ballTag.m_startingVelY);
 		}
 
 		// lock to screen
 		if (ballPos.m_y < 0.0)
 		{
-			// bounce ball
+			// Reverse ball, "bouncing" it.
 			ballPos.m_y = 0.0;
-			ballTag.m_velX = randomVelocitySign(ballTag.m_velX);
-			ballTag.m_velY = randomVelocitySign(ballTag.m_velY);
+			ballTag.m_velY *= -1;
 		}
 		else if (ballPos.m_y > (480.0 - 16.0)) // screen height - sprite height
 		{
-			// bounce ball
+			// Reverse ball, "bouncing" it.
 			ballPos.m_y = (480.0 - 16.0);
-			ballTag.m_velX = randomVelocitySign(ballTag.m_velX);
-			ballTag.m_velY = randomVelocitySign(ballTag.m_velY);
+			ballTag.m_velY *= -1;
 		}
 	} 
 }

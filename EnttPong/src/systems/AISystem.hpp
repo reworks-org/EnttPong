@@ -33,9 +33,10 @@ namespace ep
 		///
 		/// Process events and update entities accordingly.
 		///
+		/// \param time Update loop delta time.
 		/// \param registry The registry to retrieve entities from.
 		///
-		void update(entt::DefaultRegistry& registry) noexcept;
+		void update(double time, entt::DefaultRegistry& registry) noexcept;
 	};
 }
 

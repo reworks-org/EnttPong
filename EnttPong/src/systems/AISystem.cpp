@@ -14,7 +14,7 @@
 
 namespace ep
 {
-	void AISystem::update(entt::DefaultRegistry& registry) noexcept
+	void AISystem::update(double time, entt::DefaultRegistry& registry) noexcept
 	{
 		// First we retrieve the appropriate entities.
 		const auto ai = registry.attachee<AITag>();
@@ -36,11 +36,11 @@ namespace ep
 
 		if (ballPC.m_y > aiPC.m_y)
 		{
-			aiPC.m_y = ballPC.m_y - 6.0;
+			aiPC.m_y += 2.5;
 		}
 		else if (ballPC.m_y < aiPC.m_y)
 		{
-			aiPC.m_y = ballPC.m_y - 6.0;
+			aiPC.m_y -= 2.5;
 		}
 	}
 }

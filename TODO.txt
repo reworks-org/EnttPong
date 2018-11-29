@@ -1,9 +1,0 @@
-Add travis-ci support
-add appveyor support
-fix movement -> should be smooth
-implement collisions
-implement ai
-
-collision and velocity belong in collisionsystem
-
-finish docs

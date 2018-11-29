@@ -47,16 +47,14 @@ namespace ep
 		// calculate collisions and act on them
 		if (SDL_HasIntersection(&PlayerBB, &BallBB) == SDL_TRUE)
 		{
-			// bounce ball
-			ballTag.m_velX = randomVelocitySign(ballTag.m_velX);
-			ballTag.m_velY = randomVelocitySign(ballTag.m_velY);
+			// Reverse ball, "bouncing" it.
+			ballTag.m_velX *= -1;
 		}
 		
 		if (SDL_HasIntersection(&AIBB, &BallBB) == SDL_TRUE)
 		{
-			// bounce ball
-			ballTag.m_velX = randomVelocitySign(ballTag.m_velX);
-			ballTag.m_velY = randomVelocitySign(ballTag.m_velY);
+			// Reverse ball, "bouncing" it.
+			ballTag.m_velX *= -1;
 		}
 	}
 }

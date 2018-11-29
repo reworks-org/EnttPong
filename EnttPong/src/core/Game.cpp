@@ -75,7 +75,7 @@ namespace ep
 			render();
 
 			LOG_INFO << "TIME: " << time << "\n";
-			LOG_INFO << "ACLR: " << accumulator << "\n";
+			LOG_INFO << "ACCM: " << accumulator << "\n";
 		}
 
 		return EXIT_SUCCESS;
@@ -109,18 +109,21 @@ namespace ep
 
 	void Game::update(double time)
 	{
-		m_aiSystem.update(m_registry);
+		m_aiSystem.update(time, m_registry);
 		m_moveSystem.update(time, m_registry);
 		m_collisionSystem.update(time, m_registry);
 	}
 
 	void Game::render()
 	{
+		// Flush renderer.
 		SDL_SetRenderDrawColor(m_window.getRenderer(), 0, 0, 0, 255);
 		SDL_RenderClear(m_window.getRenderer());
 
+		// Render components.
 		m_renderSystem.render(&m_window, m_registry);
 
+		// Draw them to the screen.
 		SDL_RenderPresent(m_window.getRenderer());
 	}
 }
