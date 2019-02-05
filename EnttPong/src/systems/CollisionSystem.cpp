@@ -27,6 +27,13 @@ namespace ep
 		const PositionComponent& ballPos = registry.get<PositionComponent>(ball);
 		const SpriteComponent& ballSprite = registry.get<SpriteComponent>(ball);
 
+		// If the ball is bounce immune we can count down the ticks and return
+		if(ballTag.m_bounceImmune > 0 )
+		{
+			ballTag.m_bounceImmune--;
+			return;
+		}
+
 		const auto player = registry.attachee<PlayerTag>();
 		const PositionComponent& playerPos = registry.get<PositionComponent>(player);
 		const SpriteComponent& playerSprite = registry.get<SpriteComponent>(player);
@@ -36,7 +43,7 @@ namespace ep
 		const SpriteComponent& aiSprite = registry.get<SpriteComponent>(ai);
 
 		// Ball bounding box.
-		SDL_Rect BallBB{ static_cast<int>(ballPos.m_x), static_cast<int>(ballPos.m_y), ballSprite.m_radius, ballSprite.m_radius };
+		SDL_Rect BallBB{ static_cast<int>(ballPos.m_x - ballSprite.m_radius), static_cast<int>(ballPos.m_y - ballSprite.m_radius), ballSprite.m_radius * 2, ballSprite.m_radius * 2};
 
 		// Player bounding box.
 		SDL_Rect PlayerBB{ static_cast<int>(playerPos.m_x), static_cast<int>(playerPos.m_y), playerSprite.m_width, playerSprite.m_height };
@@ -49,12 +56,18 @@ namespace ep
 		{
 			// Reverse ball, "bouncing" it.
 			ballTag.m_velX *= -1;
+
+			// Set bounce immunity for a few ticks to prevent ball from getting stuck inside the paddle
+			ballTag.m_bounceImmune = 5;
 		}
 		
 		if (SDL_HasIntersection(&AIBB, &BallBB) == SDL_TRUE)
 		{
 			// Reverse ball, "bouncing" it.
 			ballTag.m_velX *= -1;
+
+			// Set bounce immunity for a few ticks to prevent ball from getting stuck inside the paddle
+			ballTag.m_bounceImmune = 5;
 		}
 	}
 }
