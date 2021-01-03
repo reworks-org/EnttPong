@@ -1,7 +1,7 @@
 # EnttPong
-[![Windows](https://travis-ci.org/DomRe/EnttPong.svg?branch=master)](https://travis-ci.org/DomRe/EnttPong)
+[![Windows](https://ci.appveyor.com/api/projects/status/4a34n1l0egf6jp4t?svg=true)](https://ci.appveyor.com/project/reworks/enttpong)
 [![Linux & OS X](https://ci.appveyor.com/api/projects/status/0ckm4wa9j9ejv80h?svg=true)](https://ci.appveyor.com/project/DomRe/enttpong)
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 
 ## Info
 Built for [entt](https://github.com/skypjack/entt) project,

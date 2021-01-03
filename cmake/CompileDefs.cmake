@@ -1,9 +1,7 @@
 if (MSVC)
     set(COMPILE_FLAGS
         /std:c++17
-        /W0
         /WX-
-        /MP
         /GF
         /EHsc
         /fp:except
@@ -25,6 +23,7 @@ if (MSVC)
         /GS
         /GR
         /sdl
+        /Wall
     )
 
     set(COMPILE_FLAGS_RELEASE
@@ -37,6 +36,7 @@ if (MSVC)
         /GS-
         /Gy
         /GR-
+        /w
     )
 else()
     set(COMPILE_FLAGS

@@ -16,14 +16,11 @@ set(PREPROCESSOR_FLAGS_RELEASE_GENERAL
 
 if (MSVC)
     set (WINDOWS_FLAGS
-        "WIN32"
-        "_WIN32"
-        "WIN64"
         "_WIN64"
-        "_WINDOWS"
         "_CRT_SECURE_NO_WARNINGS"
         "_CRT_SECURE_NO_DEPRECATE"
         "_CRT_NONSTDC_NO_DEPRECATE"
+        "_CONSOLE"
     )
 
     set(PREPROCESSOR_FLAGS_DEBUG 

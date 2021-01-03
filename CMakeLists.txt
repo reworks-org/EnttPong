@@ -103,8 +103,6 @@ else()
         "${SDL2_LIBRARIES}"
         "pthread"
         "dl"
-        "GL"
-        "m"
     )
 endif()
 

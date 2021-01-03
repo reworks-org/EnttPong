@@ -21,7 +21,6 @@ if (MSVC)
 else()
 	set(LINK_FLAGS
 		-pthread
-		-static
 	)
 
 	set(LINK_FLAGS_DEBUG
