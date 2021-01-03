@@ -56,6 +56,12 @@ namespace ep
 		/// The original Y velocity of the ball.
 		///
 		const double m_startingVelY;
+
+		///
+		/// The number of ticks the ball is bounce immune for
+		///
+		int m_bounceImmune;
+
 	};
 }
 
