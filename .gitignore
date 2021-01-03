@@ -3,19 +3,9 @@
 Thumbs.db
 
 # build stuff
-EnttPong/bin/
-EnttPong/build/
-
-# visual studio stuff
-.vs/
-
-# CLion stuff
-/.idea
-
-# CMake stuff
-cmake-build-debug/
 build/
-bin/
+output/
 
-# Emacs stuff
-*~
+# project stuff
+.vs/
+CMakeSettings.json

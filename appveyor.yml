@@ -1,21 +1,25 @@
-version: 0.0.{build}-{branch}
-branches: 
-  only: 
+version: 2.0.{build}-{branch}
+branches:
+  only:
     - master
 
-shallow_clone: true
+shallow_clone: false
 skip_tags: true
-image:
-  - Visual Studio 2017
+clone_depth: 1
+
+image: Visual Studio 2019
 
 platform:
-  - x86
   - x64
 
 configuration:
   - Debug
   - Release
 
-build:
-  parallel: true
-  project: EnttPong.sln
+matrix:
+  fast_finish: false
+
+build_script:
+  - cmd: cmake -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=%CONFIGURATION% -Bbuild -H.
+  - cmd: cd build
+  - cmd: msbuild entt_pong.sln
