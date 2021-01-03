@@ -30,8 +30,7 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt purge --auto-remove cmake; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt update; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt upgrade -y; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt install -y libsdl2-2.0-0 libsdl2-dev; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt install -y libsdl2-2.0-0 libsdl2-dev gcc; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then pip install cmake; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export PATH="~/.local/bin:$PATH"; fi
 
