@@ -3,6 +3,7 @@ if (MSVC)
         /std:c++17
         /WX-
         /GF
+        /MP
         /EHsc
         /fp:except
         /fp:precise

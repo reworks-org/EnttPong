@@ -7,13 +7,8 @@
 Built for [entt](https://github.com/skypjack/entt) project,
 at the request of the developer as a demo.
 
-### Building
-A CMake build file is provided.
-
-See appveyor and travis build scripts for how to build.
-
-Requires:
-- entt v3.5.2
-- SDL2 2.0.14
-- SDL2_gfx 1.0.4
-- 64Bit PC
+## Building
+- A CMake build file is provided.
+- See appveyor and travis build scripts for how to build.
+- Linux requires SDL2 and SDL2 development files installed.
+- 64bit only.
