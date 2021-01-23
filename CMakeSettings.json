@@ -1,0 +1,58 @@
+﻿{
+  "configurations": [
+    {
+      "name": "MSVC-Debug",
+      "generator": "Visual Studio 16 2019 Win64",
+      "configurationType": "Debug",
+      "buildRoot": "${projectDir}\\build\\${name}",
+      "installRoot": "${projectDir}\\output\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "-p:CAExcludePath=${projectDir}\\dependencies",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "variables": [
+        {
+          "name": "BUILD_TESTING",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "CMAKE_BUILD_TYPE",
+          "value": "Debug",
+          "type": "STRING"
+        },
+        {
+          "name": "ALSOFT_INSTALL",
+          "value": "False",
+          "type": "BOOL"
+        }
+      ],
+      "cmakeExecutable": "cmake",
+      "intelliSenseMode": "windows-msvc-x64",
+      "enableMicrosoftCodeAnalysis": true,
+      "codeAnalysisRuleset": "CodeAnalysis.ruleset"
+    },
+    {
+      "name": "MSVC-Release",
+      "generator": "Visual Studio 16 2019 Win64",
+      "configurationType": "Release",
+      "buildRoot": "${projectDir}\\build\\${name}",
+      "installRoot": "${projectDir}\\output\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "-p:CAExcludePath=${projectDir}\\dependencies",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "variables": [
+        {
+          "name": "CMAKE_BUILD_TYPE",
+          "value": "Release",
+          "type": "STRING"
+        }
+      ],
+      "cmakeExecutable": "cmake",
+      "intelliSenseMode": "windows-msvc-x64",
+      "enableMicrosoftCodeAnalysis": true,
+      "codeAnalysisRuleset": "CodeAnalysis.ruleset"
+    }
+  ]
+}
